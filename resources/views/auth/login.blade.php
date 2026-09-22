@@ -10,6 +10,10 @@
         .auth-card { max-width: 460px; margin: 7rem auto; padding: 2.5rem; border: 0; border-radius: 22px; background: #fff; box-shadow: 0 18px 45px rgba(116, 80, 38, .14); }
         .brand { color: #8a5a25; letter-spacing: .08rem; text-transform: uppercase; font-size: .8rem; font-weight: 700; }
         .form-control { border-radius: 12px; padding: .75rem 1rem; }
+        .password-wrapper { position: relative; }
+        .password-wrapper .form-control { padding-right: 3rem; }
+        .password-toggle { position: absolute; top: 50%; right: .75rem; transform: translateY(-50%); border: 0; background: transparent; color: #6c757d; padding: .25rem; }
+        .password-toggle:hover, .password-toggle:focus { color: #8a5a25; }
         .btn-bakery { background: #a86a2f; color: #fff; border-radius: 999px; padding: .75rem; font-weight: 600; }
         .btn-bakery:hover { background: #8b4f24; color: #fff; }
         .alert { border-radius: 12px; }
@@ -41,7 +45,15 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-semibold" for="password">Password</label>
-                    <input class="form-control" id="password" name="password" type="password" required>
+                    <div class="password-wrapper">
+                        <input class="form-control" id="password" name="password" type="password" required>
+                        <button class="password-toggle" type="button" id="password-toggle" aria-label="Show password" aria-pressed="false">
+                            <span aria-hidden="true">👁</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="text-end mb-4">
+                    <a href="{{ route('password.request') }}">Forgot your password?</a>
                 </div>
                 <div class="form-check mb-4">
                     <input class="form-check-input" id="remember" name="remember" type="checkbox" value="1">
@@ -52,5 +64,16 @@
             <p class="text-center text-muted mt-4 mb-0">New here? <a href="{{ route('register') }}">Create an account</a></p>
         </div>
     </main>
+    <script>
+        const passwordInput = document.getElementById('password');
+        const passwordToggle = document.getElementById('password-toggle');
+
+        passwordToggle.addEventListener('click', () => {
+            const isHidden = passwordInput.type === 'password';
+            passwordInput.type = isHidden ? 'text' : 'password';
+            passwordToggle.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+            passwordToggle.setAttribute('aria-pressed', String(isHidden));
+        });
+    </script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CustomerPasswordController;
 use App\Http\Controllers\Admin\InvitationController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\AuthController;
@@ -24,6 +25,10 @@ Route::get('/', function () {
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.store');
+    Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])->name('password.request');
+    Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])->name('password.email');
+    Route::get('/reset-password/{token}', [AuthController::class, 'showResetPassword'])->name('password.reset');
+    Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [AuthController::class, 'register'])->name('register.store');
     Route::get('/invite/accept/{token}', [InvitationController::class, 'accept'])->name('invite.accept');
@@ -52,8 +57,12 @@ Route::middleware(['auth', 'approved'])->group(function () {
         Route::post('/checkout', [OrderController::class, 'store'])->name('orders.store');
     });
 
-    Route::middleware('admin')->group(function () {
+    Route::middleware('admin','approved')->group(function () {
         Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+        Route::get('/admin/change-password', [AuthController::class, 'showChangePassword'])->name('admin.password.edit');
+        Route::put('/admin/change-password', [AuthController::class, 'changePassword'])->name('admin.password.update');
+        Route::get('/admin/customers/password', [CustomerPasswordController::class, 'index'])->name('admin.customers.password.edit');
+        Route::put('/admin/customers/{user}/password', [CustomerPasswordController::class, 'update'])->name('admin.customers.password.update');
 
         Route::get('/admin/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
         Route::get('/admin/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create');
