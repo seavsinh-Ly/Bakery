@@ -26,9 +26,8 @@
         .filter.active { color: #fff; background: var(--ink); border-color: var(--ink); }
         .product-card { border-radius: 16px; overflow: hidden; transition: transform .2s, box-shadow .2s; }
         .product-card:hover { transform: translateY(-4px); box-shadow: 0 16px 35px rgba(36,35,33,.1); }
-        .product-image { height: 245px; object-fit: cover; }
-        .product-image-wrap { background: #fff8ef; position: relative; }
-        .product-image-wrap::after { content: ''; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 -45px 45px rgba(36,35,33,.08); }
+        .product-image { height: 245px; object-fit: contain; background: #fff; }
+        .product-image-wrap { background: #fff; position: relative; }
         .product-name { font-family: Georgia, serif; }
         .price { color: var(--gold); font-weight: 700; }
         .muted { color: #827a70; }
