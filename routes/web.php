@@ -62,7 +62,7 @@ Route::middleware(['auth', 'approved'])->group(function () {
         Route::get('/admin/change-password', [AuthController::class, 'showChangePassword'])->name('admin.password.edit');
         Route::put('/admin/change-password', [AuthController::class, 'changePassword'])->name('admin.password.update');
         Route::get('/admin/customers/password', [CustomerPasswordController::class, 'index'])->name('admin.customers.password.edit');
-        Route::put('/admin/customers/{user}/password', [CustomerPasswordController::class, 'update'])->name('admin.customers.password.update');
+        Route::put('/admin/customers/password', [CustomerPasswordController::class, 'update'])->name('admin.customers.password.update');
 
         Route::get('/admin/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
         Route::get('/admin/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create');

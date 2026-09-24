@@ -35,7 +35,7 @@
                     <a class="nav-link" href="{{ route('admin.categories.index') }}">Categories</a>
                     <a class="nav-link" href="{{ route('admin.invitations.index') }}">Invitations</a>
                     <a class="nav-link" href="{{ route('bakery.menu') }}">Storefront</a>
-                    <a class="nav-link" href="{{ route('admin.password.edit') }}">Change password</a>
+                    <a class="nav-link" href="{{ route('admin.password.edit') }}">Reset Admin Password</a>
                     <a class="nav-link" href="{{ route('admin.customers.password.edit') }}">Reset customer password</a>
                 </nav>
                 <form action="{{ route('logout') }}" method="POST" class="mt-4">

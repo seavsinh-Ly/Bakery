@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change password | Bakery</title>
+    <title>Reset Admin Password | Bakery</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { min-height: 100vh; background: linear-gradient(135deg, #fffaf3, #f4d7ad); font-family: Arial, sans-serif; }
@@ -17,8 +17,8 @@
 <body>
     <main class="container">
         <div class="auth-card">
-            <h1 class="h3 fw-bold mb-2">Change admin password</h1>
-            <p class="text-muted mb-4">Confirm your current password, then choose a new one.</p>
+            <h1 class="h3 fw-bold mb-2">Reset admin password</h1>
+            <p class="text-muted mb-4">Select an admin email, then choose a new password for that account.</p>
 
             @if(session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
@@ -33,8 +33,15 @@
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
-                    <label class="form-label fw-semibold" for="current_password">Current password</label>
-                    <input class="form-control" id="current_password" name="current_password" type="password" required autofocus>
+                    <label class="form-label fw-semibold" for="admin_id">Admin email</label>
+                    <select class="form-select" id="admin_id" name="admin_id" required autofocus>
+                        <option value="">Select an admin</option>
+                        @foreach($admins as $admin)
+                            <option value="{{ $admin->id }}" @selected(old('admin_id') == $admin->id)>
+                                {{ $admin->email }} ({{ $admin->name }})
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-semibold" for="password">New password</label>
@@ -44,7 +51,7 @@
                     <label class="form-label fw-semibold" for="password_confirmation">Confirm new password</label>
                     <input class="form-control" id="password_confirmation" name="password_confirmation" type="password" required>
                 </div>
-                <button class="btn btn-bakery w-100" type="submit">Change password</button>
+                <button class="btn btn-bakery w-100" type="submit">Reset password</button>
             </form>
             <p class="text-center mt-4 mb-0"><a href="{{ route('admin.dashboard') }}">Back to dashboard</a></p>
         </div>

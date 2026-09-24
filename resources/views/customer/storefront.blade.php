@@ -11,6 +11,7 @@
         .navbar { background: rgba(255,255,255,.94); border-bottom: 1px solid var(--line); }
         .brand { color: var(--ink); font-family: Georgia, serif; font-size: 1.7rem; letter-spacing: .04em; }
         .brand small { display: block; color: var(--gold); font: 700 .62rem Inter, sans-serif; letter-spacing: .25em; text-transform: uppercase; }
+        .welcome-caption { color: var(--gold); font-size: .72rem; font-weight: 700; letter-spacing: .08em; }
         .catalog-header { padding: 3.5rem 0 2rem; }
         .eyebrow { color: var(--gold); font-size: .72rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
         .catalog-title { font-family: Georgia, serif; font-size: clamp(2.2rem, 5vw, 4rem); }
@@ -37,7 +38,12 @@
 <body>
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container py-2">
-            <a class="navbar-brand brand" href="{{ route('customer.dashboard') }}">Bakery<small>patisserie & co.</small></a>
+            <div class="d-flex align-items-center gap-3">
+                <a class="navbar-brand brand mb-0" href="{{ route('customer.dashboard') }}">Bakery<small>patisserie & co.</small></a>
+                @if(auth()->user()->isCustomer())
+                    <span class="welcome-caption d-none d-md-inline">Welcome to Our Bakery, Dear {{ auth()->user()->name }}!</span>
+                @endif
+            </div>
             <div class="ms-auto d-flex gap-2 align-items-center">
                 @if(auth()->user()->isAdmin())
                     <a href="{{ route('admin.dashboard') }}" class="btn btn-sm btn-outline-dark rounded-pill">Admin dashboard</a>

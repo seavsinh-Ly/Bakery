@@ -19,7 +19,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
                 <h1 class="h2 fw-bold mb-1">Reset customer password</h1>
-                <p class="text-muted mb-0">Set a temporary password for a customer who cannot sign in.</p>
+                <p class="text-muted mb-0">Select a customer, then choose a new password for that account.</p>
             </div>
             <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-secondary rounded-pill">Back to dashboard</a>
         </div>
@@ -32,28 +32,34 @@
         @endif
 
         <div class="panel p-4">
-            @forelse($customers as $customer)
-                <form method="POST" action="{{ route('admin.customers.password.update', $customer) }}" class="border-bottom py-3">
+            @if($customers->isEmpty())
+                <p class="text-muted mb-0">No customer accounts found.</p>
+            @else
+                <form method="POST" action="{{ route('admin.customers.password.update') }}">
                     @csrf
                     @method('PUT')
-                    <div class="row g-3 align-items-end">
-                        <div class="col-md-4">
-                            <div class="fw-semibold">{{ $customer->name }}</div>
-                            <div class="text-muted small">{{ $customer->email }}</div>
-                        </div>
-                        <div class="col-md-5">
-                            <label class="form-label fw-semibold" for="password-{{ $customer->id }}">Temporary password</label>
-                            <input class="form-control" id="password-{{ $customer->id }}" name="password" type="password" minlength="8" required>
-                            <input class="form-control mt-2" name="password_confirmation" type="password" placeholder="Confirm temporary password" minlength="8" required>
-                        </div>
-                        <div class="col-md-3">
-                            <button class="btn submit-btn w-100" type="submit">Set password</button>
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="customer_id">Customer email</label>
+                        <select class="form-select" id="customer_id" name="customer_id" required autofocus>
+                            <option value="">Select a customer</option>
+                            @foreach($customers as $customer)
+                                <option value="{{ $customer->id }}" @selected(old('customer_id') == $customer->id)>
+                                    {{ $customer->email }} ({{ $customer->name }})
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="password">New password</label>
+                        <input class="form-control" id="password" name="password" type="password" minlength="8" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold" for="password_confirmation">Confirm new password</label>
+                        <input class="form-control" id="password_confirmation" name="password_confirmation" type="password" minlength="8" required>
+                    </div>
+                    <button class="btn submit-btn w-100" type="submit">Reset password</button>
                 </form>
-            @empty
-                <p class="text-muted mb-0">No customer accounts found.</p>
-            @endforelse
+            @endif
         </div>
     </main>
 </body>

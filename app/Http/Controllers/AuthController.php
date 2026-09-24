@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class AuthController extends Controller
@@ -135,20 +136,32 @@ class AuthController extends Controller
 
     public function showChangePassword(): View
     {
-        return view('auth.change-password');
+        return view('auth.change-password', [
+            'admins' => User::query()
+                ->where('role', 'admin')
+                ->where('status', 'approved')
+                ->orderBy('email')
+                ->get(['id', 'name', 'email']),
+        ]);
     }
 
     public function changePassword(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'current_password' => ['required', 'current_password:web'],
+            'admin_id' => [
+                'required',
+                Rule::exists('users', 'id')->where(fn ($query) => $query
+                    ->where('role', 'admin')
+                    ->where('status', 'approved')),
+            ],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        $request->user()->update([
+        $admin = User::query()->findOrFail($validated['admin_id']);
+        $admin->update([
             'password' => $validated['password'],
         ]);
 
-        return back()->with('success', 'Your password has been changed successfully.');
+        return back()->with('success', "Password reset successfully for {$admin->email}.");
     }
 }
