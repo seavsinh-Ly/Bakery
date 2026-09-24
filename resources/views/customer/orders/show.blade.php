@@ -45,9 +45,9 @@
                         @foreach($order->items as $item)
                             @php
                                 $image = $item->product->images->first();
-                                $imageUrl = $image ? (filter_var($image->image_path, FILTER_VALIDATE_URL) ? $image->image_path : asset('storage/' . ltrim($image->image_path, '/'))) : 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=300&q=80';
+                                $imageUrl = $image ? (filter_var($image->image_path, FILTER_VALIDATE_URL) ? $image->image_path : asset('storage/' . ltrim($image->image_path, '/'))) : 'https://images.unsplash.com/photo-1559620192-032c4bc4674e?auto=format&fit=crop&w=300&q=80';
                             @endphp
-                            <tr><td><div class="d-flex align-items-center gap-3"><img src="{{ $imageUrl }}" class="cart-image" alt="{{ $item->product->name }}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=300&q=80';"><span class="fw-semibold">{{ $item->product->name }}</span></div></td><td>{{ $item->quantity }}</td><td>${{ number_format($item->unit_price, 2) }}</td><td class="price">${{ number_format($item->subtotal, 2) }}</td></tr>
+                            <tr><td><div class="d-flex align-items-center gap-3"><img src="{{ $imageUrl }}" class="cart-image" alt="{{ $item->product->name }}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1559620192-032c4bc4674e?auto=format&fit=crop&w=300&q=80';"><span class="fw-semibold">{{ $item->product->name }}</span></div></td><td>{{ $item->quantity }}</td><td>${{ number_format($item->unit_price, 2) }}</td><td class="price">${{ number_format($item->subtotal, 2) }}</td></tr>
                         @endforeach
                     </tbody></table></div>
                 </section>

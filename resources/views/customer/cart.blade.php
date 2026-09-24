@@ -44,11 +44,11 @@
                         $image = $product->images->first();
                         $imageUrl = $image
                             ? (filter_var($image->image_path, FILTER_VALIDATE_URL) ? $image->image_path : asset('storage/' . ltrim($image->image_path, '/')))
-                            : 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80';
+                            : 'https://images.unsplash.com/photo-1559620192-032c4bc4674e?auto=format&fit=crop&w=500&q=80';
                     @endphp
                     <div class="col-sm-6 col-lg-4">
                         <div class="product-card">
-                            <img src="{{ $imageUrl }}" class="product-card-image" alt="{{ $product->name }}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80';">
+                            <img src="{{ $imageUrl }}" class="product-card-image" alt="{{ $product->name }}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1559620192-032c4bc4674e?auto=format&fit=crop&w=500&q=80';">
                             <div class="p-3">
                                 <div class="muted small">{{ $product->category?->name ?? 'Bakery product' }}</div>
                                 <div class="d-flex justify-content-between gap-2 mt-1">
@@ -85,12 +85,12 @@
                                 $image = $cartItem->product->images->first();
                                 $imageUrl = $image
                                     ? (filter_var($image->image_path, FILTER_VALIDATE_URL) ? $image->image_path : asset('storage/' . ltrim($image->image_path, '/')))
-                                    : 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=300&q=80';
+                                    : 'https://images.unsplash.com/photo-1559620192-032c4bc4674e?auto=format&fit=crop&w=300&q=80';
                             @endphp
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center gap-3">
-                                        <img src="{{ $imageUrl }}" class="cart-image" alt="{{ $cartItem->product->name }}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=300&q=80';">
+                                        <img src="{{ $imageUrl }}" class="cart-image" alt="{{ $cartItem->product->name }}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1559620192-032c4bc4674e?auto=format&fit=crop&w=300&q=80';">
                                         <div>
                                             <div class="fw-semibold">{{ $cartItem->product->name }}</div>
                                             <small class="muted">{{ $cartItem->product->category?->name ?? 'Bakery product' }}</small>

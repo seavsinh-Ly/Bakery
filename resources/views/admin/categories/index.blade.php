@@ -42,7 +42,7 @@
                                 <td>
                                     <div class="d-flex gap-2">
                                         <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-sm btn-outline-dark rounded-pill">Edit</a>
-                                        <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
+                                        <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this category?');">
                                             @csrf @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill">Delete</button>
                                         </form>

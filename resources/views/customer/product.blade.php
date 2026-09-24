@@ -31,12 +31,12 @@
             $image = $product->images->first();
             $imageUrl = $image
                 ? (filter_var($image->image_path, FILTER_VALIDATE_URL) ? $image->image_path : asset('storage/' . ltrim($image->image_path, '/')))
-                : 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80';
+                : 'https://images.unsplash.com/photo-1559620192-032c4bc4674e?auto=format&fit=crop&w=900&q=80';
         @endphp
         <div class="detail-card">
             <div class="row g-0">
                 <div class="col-lg-6">
-                    <img src="{{ $imageUrl }}" class="detail-image" alt="{{ $product->name }}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80';">
+                    <img src="{{ $imageUrl }}" class="detail-image" alt="{{ $product->name }}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1559620192-032c4bc4674e?auto=format&fit=crop&w=900&q=80';">
                 </div>
                 <div class="col-lg-6">
                     <div class="detail-copy">
