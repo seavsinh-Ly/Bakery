@@ -76,7 +76,7 @@ class BakeryController extends Controller
 
         return view('customer.storefront', [
             'categories' => Category::latest()->get(),
-            'products' => $query->latest()->get(),
+            'products' => $query->latest()->paginate(4),
             'selectedCategory' => $selectedCategory,
         ]);
     }

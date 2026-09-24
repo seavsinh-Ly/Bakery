@@ -26,7 +26,7 @@ class CustomerDashboardController extends Controller
 
         return view('customer.storefront', [
             'categories' => Category::latest()->get(),
-            'products' => $query->latest()->take(12)->get(),
+            'products' => $query->latest()->paginate(4),
             'selectedCategory' => $selectedCategory,
             'cartCount' => Cart::where('user_id', auth()->id())->sum('quantity'),
         ]);
@@ -47,7 +47,7 @@ class CustomerDashboardController extends Controller
 
         return view('customer.storefront', [
             'categories' => Category::latest()->get(),
-            'products' => $query->latest()->get(),
+            'products' => $query->latest()->paginate(4),
             'selectedCategory' => $selectedCategory,
             'cartCount' => Cart::where('user_id', auth()->id())->sum('quantity'),
         ]);
