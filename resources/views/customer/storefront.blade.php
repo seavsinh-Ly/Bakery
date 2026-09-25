@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root { --ink: #5A3424; --gold: #E7A178; --cream: #FFF0E6; --line: #EBCDB8; }
-        body { background: linear-gradient(rgba(255,240,230,.84), rgba(255,240,230,.84)), url('{{ asset('images/bakery-theme-background-wall.avif') }}') center / cover fixed; color: var(--ink); font-family: Inter, Arial, sans-serif; }
+        body { background: linear-gradient(rgba(255,240,230,.84), rgba(255,240,230,.84)), url('https://cdn.phototourl.com/member/2026-09-25-e5885b14-548b-46a5-af02-4a07bad6c79e.jpg') center / cover fixed; color: var(--ink); font-family: Inter, Arial, sans-serif; }
         .navbar { background: rgba(255,255,255,.94); border-bottom: 1px solid var(--line); }
         .brand { color: var(--ink); font-family: Georgia, serif; font-size: 1.7rem; letter-spacing: .04em; }
         .brand small { display: block; color: var(--gold); font: 700 .62rem Inter, sans-serif; letter-spacing: .25em; text-transform: uppercase; }
@@ -42,7 +42,7 @@
         .product-card { display: flex; height: 100%; flex-direction: column; }
         .product-card:hover { transform: translateY(-6px); border-color: #E7A178; box-shadow: 0 18px 35px rgba(90,52,36,.14); }
         .product-image { display: block; width: 100%; height: auto; }
-        .product-image-wrap { height: 220px; background: linear-gradient(rgba(255,240,230,.25), rgba(255,240,230,.25)), url('{{ asset('images/bakery-theme-background-wall.avif') }}') center / cover; border-bottom: 1px solid #EBCDB8; }
+        .product-image-wrap { height: 220px; background: linear-gradient(rgba(255,240,230,.25), rgba(255,240,230,.25)), url('https://cdn.phototourl.com/member/2026-09-25-e5885b14-548b-46a5-af02-4a07bad6c79e.jpg') center / cover; border-bottom: 1px solid #EBCDB8; }
         .product-image { width: 100%; height: 100%; object-fit: cover; }
         .product-card-content { display: flex; flex: 1; flex-direction: column; }
         .product-name { min-height: 2.4em; font-family: Georgia, serif; }
